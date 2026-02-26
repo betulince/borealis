@@ -165,7 +165,7 @@ a:hover { opacity: 0.6; }
 .post-item {
     display: flex;
     flex-direction: column;
-    gap: 0.125rem;
+    gap: 0;
 }
 
 .post-header {
@@ -176,7 +176,7 @@ a:hover { opacity: 0.6; }
 }
 
 .post-title {
-    font-size: 0.875rem;
+    font-size: 0.75rem;
     font-weight: 600;
     margin: 0;
     flex: 1;

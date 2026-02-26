@@ -279,12 +279,26 @@ public class ExternalContentService {
                     book.setRating(starCount);
                 }
 
-                // Extract review text (usually after rating)
+                // Extract review text - skip Goodreads metadata
                 String plainText = rssFeedService.extractPlainText(description);
-                if (plainText.length() > 100) {
-                    book.setReview(plainText.substring(0, 300) + "...");
-                } else {
-                    book.setReview(plainText);
+
+                // Remove Goodreads metadata (author:, name:, average rating:, etc.)
+                String cleanedReview = plainText.replaceAll("(?i)author:.*?(?=\\n|$)", "")
+                                                 .replaceAll("(?i)name:.*?(?=\\n|$)", "")
+                                                 .replaceAll("(?i)average rating:.*?(?=\\n|$)", "")
+                                                 .replaceAll("(?i)book published:.*?(?=\\n|$)", "")
+                                                 .replaceAll("(?i)rating:.*?(?=\\n|$)", "")
+                                                 .replaceAll("(?i)read at:.*?(?=\\n|$)", "")
+                                                 .replaceAll("(?i)date added:.*?(?=\\n|$)", "")
+                                                 .replaceAll("\\s+", " ")
+                                                 .trim();
+
+                // Only set review if there's actual content after cleaning
+                if (cleanedReview.length() > 50) {
+                    String finalReview = cleanedReview.length() > 200
+                        ? cleanedReview.substring(0, 200) + "..."
+                        : cleanedReview;
+                    book.setReview(finalReview);
                 }
 
                 // Set date
