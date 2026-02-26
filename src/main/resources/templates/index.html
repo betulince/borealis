@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout(~{::main})}">
+<body>
+    <main>
+        <!-- Intro Section -->
+        <section class="intro">
+            <p class="intro-text">
+                Hey there! I'm Betul, a software engineer working at Pegasystems. I focus on backend engineering
+                and everything related to system design. This is where I share my thoughts on technology, books, and life.
+            </p>
+        </section>
+
+        <!-- Substack Writing -->
+        <section class="content-section" th:if="${!substackPosts.isEmpty()}">
+            <h2 class="section-title">Substack</h2>
+
+            <div class="post-list">
+                <article th:each="post : ${substackPosts}" class="post-item">
+                    <div class="post-header">
+                        <h3 class="post-title">
+                            <a th:href="${post.externalUrl}"
+                               th:text="${post.title}"
+                               target="_blank"
+                               rel="noopener noreferrer">Post Title</a>
+                        </h3>
+                        <time th:text="${#temporals.format(post.date, 'MMM d, yyyy')}" class="post-date">Date</time>
+                    </div>
+                    <p th:if="${post.excerpt}" th:text="${post.excerpt}" class="post-excerpt">Excerpt</p>
+                </article>
+            </div>
+
+            <a href="https://substack.com/@betulince" class="view-more" target="_blank" rel="noopener noreferrer">View all on Substack →</a>
+        </section>
+
+        <!-- Medium Writing -->
+        <section class="content-section" th:if="${!mediumPosts.isEmpty()}">
+            <h2 class="section-title">Medium</h2>
+
+            <div class="post-list">
+                <article th:each="post : ${mediumPosts}" class="post-item">
+                    <div class="post-header">
+                        <h3 class="post-title">
+                            <a th:href="${post.externalUrl}"
+                               th:text="${post.title}"
+                               target="_blank"
+                               rel="noopener noreferrer">Post Title</a>
+                        </h3>
+                        <time th:text="${#temporals.format(post.date, 'MMM d, yyyy')}" class="post-date">Date</time>
+                    </div>
+                    <p th:if="${post.excerpt}" th:text="${post.excerpt}" class="post-excerpt">Excerpt</p>
+                </article>
+            </div>
+
+            <a href="https://medium.com/@betulince" class="view-more" target="_blank" rel="noopener noreferrer">View all on Medium →</a>
+        </section>
+    </main>
+</body>
+</html>

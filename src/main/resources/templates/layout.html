@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="layout (content)">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title != null ? title + ' / Betul Ince' : 'Betul Ince'}">Betul Ince</title>
+    <meta th:if="${description}" name="description" th:content="${description}">
+
+    <!-- SEO Meta Tags -->
+    <meta property="og:title" th:content="${title != null ? title : 'Betul Ince'}">
+    <meta property="og:description" th:content="${description != null ? description : 'Personal website'}">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/css/themes.css}">
+    <link rel="stylesheet" th:href="@{/css/syntax-highlight.css}">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header class="site-header">
+        <nav class="navbar">
+            <a href="/" class="site-name" th:href="@{/}">Betul Ince</a>
+
+            <ul class="nav-links">
+                <li><a th:href="@{/}">Articles</a></li>
+                <li><a th:href="@{/reading}">Reading</a></li>
+                <li><a th:href="@{/notes}">Notes</a></li>
+                <li>
+                    <button class="theme-toggle" aria-label="Toggle dark mode">
+                        <svg class="moon-icon" viewBox="0 0 24 24">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                        <svg class="sun-icon" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content" th:insert="${content}">
+        <!-- Page content will be inserted here -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-links">
+            <a href="https://substack.com/@betulince" target="_blank" rel="noopener noreferrer">Substack</a>
+            <a href="https://medium.com/@betulince" target="_blank" rel="noopener noreferrer">Medium</a>
+            <a href="https://www.goodreads.com/user/show/67117849-bet-l-i-nce" target="_blank" rel="noopener noreferrer">Goodreads</a>
+            <a href="https://github.com/betulince" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script th:src="@{/js/theme-toggle.js}"></script>
+    <script th:src="@{/js/main.js}"></script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+/* ===========================
+   Syntax Highlighting
+   One Dark Pro Inspired
+   =========================== */
+
+.post-content pre code {
+    display: block;
+    color: #abb2bf;
+}
+
+/* Comments */
+.post-content pre code .hljs-comment,
+.post-content pre code .hljs-quote {
+    color: #5c6370;
+    font-style: italic;
+}
+
+/* Keywords */
+.post-content pre code .hljs-keyword,
+.post-content pre code .hljs-selector-tag,
+.post-content pre code .hljs-addition {
+    color: #c678dd;
+}
+
+/* Strings */
+.post-content pre code .hljs-string {
+    color: #98c379;
+}
+
+/* Functions */
+.post-content pre code .hljs-title,
+.post-content pre code .hljs-section,
+.post-content pre code .hljs-function {
+    color: #61afef;
+}
+
+/* Variables, Attributes */
+.post-content pre code .hljs-variable,
+.post-content pre code .hljs-attr,
+.post-content pre code .hljs-attribute {
+    color: #e06c75;
+}
+
+/* Numbers */
+.post-content pre code .hljs-number,
+.post-content pre code .hljs-literal {
+    color: #d19a66;
+}
+
+/* Built-ins */
+.post-content pre code .hljs-built_in,
+.post-content pre code .hljs-class .hljs-title {
+    color: #e6c07b;
+}
+
+/* Tags */
+.post-content pre code .hljs-tag,
+.post-content pre code .hljs-name {
+    color: #e06c75;
+}
+
+/* Meta */
+.post-content pre code .hljs-meta {
+    color: #61afef;
+}
+
+/* Deletion */
+.post-content pre code .hljs-deletion {
+    color: #e06c75;
+}
+
+/* Code block enhancement */
+.post-content pre {
+    position: relative;
+    box-shadow: inset 0 0 0 1px rgba(59, 130, 246, 0.1);
+}
+
+.post-content pre:hover {
+    box-shadow: inset 0 0 0 1px rgba(59, 130, 246, 0.2), 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Inline code */
+.post-content code {
+    color: var(--accent-secondary);
+}
+
+/* Light theme adjustments */
+.light-theme .post-content pre code {
+    color: #383a42;
+}
+
+.light-theme .post-content pre code .hljs-comment,
+.light-theme .post-content pre code .hljs-quote {
+    color: #a0a1a7;
+}
+
+.light-theme .post-content pre code .hljs-keyword,
+.light-theme .post-content pre code .hljs-selector-tag {
+    color: #a626a4;
+}
+
+.light-theme .post-content pre code .hljs-string {
+    color: #50a14f;
+}
+
+.light-theme .post-content pre code .hljs-title,
+.light-theme .post-content pre code .hljs-function {
+    color: #4078f2;
+}
+
+.light-theme .post-content pre code .hljs-variable,
+.light-theme .post-content pre code .hljs-attr {
+    color: #e45649;
+}
+
+.light-theme .post-content pre code .hljs-number {
+    color: #986801;
+}

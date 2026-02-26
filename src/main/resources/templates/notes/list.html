@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout(~{::main})}">
+<body>
+    <main>
+        <section class="content-section">
+            <h2 class="section-title">Notes & Ideas</h2>
+
+            <div class="notes-list" th:if="${!notes.isEmpty()}">
+                <article th:each="note : ${notes}" class="note-card">
+                    <div class="note-header">
+                        <h3 class="note-title" th:text="${note.title}">Note Title</h3>
+                        <time th:text="${#temporals.format(note.date, 'MMM d, yyyy')}" class="note-date">Date</time>
+                    </div>
+                    <div class="note-content" th:utext="${note.htmlContent}">Note content</div>
+                </article>
+            </div>
+
+            <div th:if="${notes.isEmpty()}" class="empty-state">
+                <p>No notes yet. Check back soon!</p>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

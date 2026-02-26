@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout(~{::main})}">
+<body>
+    <main>
+        <section class="section">
+            <div class="container">
+                <div class="page-header">
+                    <h1 class="page-title">Projects</h1>
+                    <p class="page-description">Things I've built and worked on</p>
+                </div>
+
+                <div class="card-grid" th:if="${!projects.isEmpty()}">
+                    <article th:each="project : ${projects}" class="card project-card">
+                        <div class="card-content">
+                            <h2 class="card-title">
+                                <a th:href="@{/projects/{slug}(slug=${project.slug})}" th:text="${project.title}">Project Title</a>
+                            </h2>
+                            <p th:if="${project.excerpt}" th:text="${project.excerpt}" class="card-excerpt">Excerpt</p>
+                            <div th:if="${project.technologies != null && !project.technologies.isEmpty()}" class="card-tags">
+                                <span th:each="tech : ${project.technologies}" th:text="${tech}" class="tag tech-tag"></span>
+                            </div>
+                            <div class="card-actions">
+                                <a th:if="${project.githubUrl}" th:href="${project.githubUrl}" target="_blank" rel="noopener noreferrer" class="btn-link">GitHub →</a>
+                                <a th:if="${project.liveUrl}" th:href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="btn-link">Live Demo →</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <div th:if="${projects.isEmpty()}" class="empty-state">
+                    <p>No projects yet. Coming soon!</p>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

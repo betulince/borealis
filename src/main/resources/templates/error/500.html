@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout(~{::main})}">
+<body>
+    <main>
+        <section class="section">
+            <div class="container">
+                <div class="error-page">
+                    <h1 class="error-title">500</h1>
+                    <h2 class="error-subtitle">Server Error</h2>
+                    <p class="error-message" th:text="${message != null ? message : 'Something went wrong on our end. Please try again later.'}">
+                        Something went wrong on our end. Please try again later.
+                    </p>
+                    <a th:href="@{/}" class="btn btn-primary">Go Home →</a>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

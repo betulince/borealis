@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout(~{::main})}">
+<body>
+    <main>
+        <article class="post">
+            <div class="post-container">
+                <header class="post-header">
+                    <a th:href="@{/blog}" class="back-link">← Back to Blog</a>
+                    <h1 class="post-title" th:text="${post.title}">Post Title</h1>
+                    <div class="post-meta">
+                        <time th:text="${#temporals.format(post.date, 'MMMM d, yyyy')}" class="post-date">Date</time>
+                        <span th:if="${post.author}" class="post-author">by <span th:text="${post.author}">Author</span></span>
+                    </div>
+                    <div th:if="${!post.tags.isEmpty()}" class="post-tags">
+                        <span th:each="tag : ${post.tags}" th:text="${tag}" class="tag"></span>
+                    </div>
+                </header>
+
+                <div class="post-content" th:utext="${post.htmlContent}">
+                    <!-- Rendered markdown content -->
+                </div>
+            </div>
+        </article>
+    </main>
+</body>
+</html>

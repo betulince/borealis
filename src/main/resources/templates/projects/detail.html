@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout(~{::main})}">
+<body>
+    <main>
+        <article class="post">
+            <div class="post-container">
+                <header class="post-header">
+                    <a th:href="@{/projects}" class="back-link">← Back to Projects</a>
+                    <h1 class="post-title" th:text="${project.title}">Project Title</h1>
+                    <div class="post-meta">
+                        <time th:text="${#temporals.format(project.date, 'MMMM yyyy')}" class="post-date">Date</time>
+                    </div>
+                    <div th:if="${project.technologies != null && !project.technologies.isEmpty()}" class="post-tags">
+                        <span th:each="tech : ${project.technologies}" th:text="${tech}" class="tag tech-tag"></span>
+                    </div>
+                    <div class="post-actions">
+                        <a th:if="${project.githubUrl}" th:href="${project.githubUrl}" target="_blank" rel="noopener noreferrer" class="btn">
+                            View on GitHub →
+                        </a>
+                        <a th:if="${project.liveUrl}" th:href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                            Live Demo →
+                        </a>
+                    </div>
+                </header>
+
+                <div class="post-content" th:utext="${project.htmlContent}">
+                    <!-- Rendered markdown content -->
+                </div>
+            </div>
+        </article>
+    </main>
+</body>
+</html>

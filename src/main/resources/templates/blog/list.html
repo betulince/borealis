@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout(~{::main})}">
+<body>
+    <main>
+        <section class="content-section">
+            <h2 class="section-title">All Writing</h2>
+
+            <div class="post-list" th:if="${!posts.isEmpty()}">
+                <article th:each="post : ${posts}" class="post-item">
+                    <div class="post-header">
+                        <h3 class="post-title">
+                            <a th:if="${post.external}"
+                               th:href="${post.externalUrl}"
+                               th:text="${post.title}"
+                               target="_blank"
+                               rel="noopener noreferrer">Post Title</a>
+                            <a th:unless="${post.external}"
+                               th:href="@{/blog/{slug}(slug=${post.slug})}"
+                               th:text="${post.title}">Post Title</a>
+                        </h3>
+                        <time th:text="${#temporals.format(post.date, 'MMM d, yyyy')}" class="post-date">Date</time>
+                    </div>
+                    <p th:if="${post.excerpt}" th:text="${post.excerpt}" class="post-excerpt">Excerpt</p>
+                </article>
+            </div>
+
+            <div th:if="${posts.isEmpty()}" class="empty-state">
+                <p>No blog posts yet. Check back soon!</p>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

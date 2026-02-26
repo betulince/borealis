@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout(~{::main})}">
+<body>
+    <main>
+        <section class="content-section">
+            <h2 class="section-title">Reading</h2>
+
+            <div class="books-grid" th:if="${!books.isEmpty()}">
+                <article th:each="book : ${books}" class="book-card">
+                    <a th:href="${book.goodreadsUrl}"
+                       class="book-cover-link"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       th:if="${book.coverImageUrl != null}">
+                        <img th:src="${book.coverImageUrl}"
+                             th:alt="${book.title}"
+                             class="book-cover">
+                    </a>
+                    <div class="book-cover-placeholder" th:unless="${book.coverImageUrl != null}">
+                        <span>📚</span>
+                    </div>
+
+                    <div class="book-details">
+                        <div class="book-meta-row">
+                            <h3 class="book-card-title">
+                                <a th:href="${book.goodreadsUrl}"
+                                   th:text="${book.title}"
+                                   target="_blank"
+                                   rel="noopener noreferrer">Book Title</a>
+                            </h3>
+                            <span class="book-status" th:text="${book.currentlyReading ? 'Currently Reading' : 'Read'}">Status</span>
+                        </div>
+
+                        <p class="book-card-author" th:text="${book.author}">Author</p>
+
+                        <p class="book-review" th:if="${book.review != null && !book.review.isEmpty()}" th:text="${book.review}">Review</p>
+
+                        <div class="book-rating" th:if="${book.rating != null && book.rating > 0}">
+                            <span th:each="i : ${#numbers.sequence(1, 5)}"
+                                  th:text="${i <= book.rating} ? '★' : '☆'"
+                                  th:classappend="${i <= book.rating} ? 'star-filled' : 'star-empty'">★</span>
+                        </div>
+                        <p class="book-no-rating" th:unless="${book.rating != null && book.rating > 0}">No rating yet</p>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Link to view all books on Goodreads -->
+            <div th:if="${!books.isEmpty()}" style="margin-top: var(--spacing-xl); padding-top: var(--spacing-xl); border-top: 1px solid var(--border-color);">
+                <a href="https://www.goodreads.com/review/list/67117849-bet-l-i-nce"
+                   class="view-more"
+                   target="_blank"
+                   rel="noopener noreferrer">View all books on Goodreads →</a>
+            </div>
+
+            <div th:if="${books.isEmpty()}" class="empty-state">
+                <p>No books yet. Check back soon!</p>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
