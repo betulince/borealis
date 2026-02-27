@@ -5,7 +5,10 @@ nixPkgs = ['jdk17']
 cmds = ['chmod +x gradlew']
 
 [phases.build]
-cmds = ['./gradlew clean bootJar --no-daemon']
+cmds = [
+  'export JAVA_HOME=$(dirname $(dirname $(which java)))',
+  './gradlew clean bootJar --no-daemon'
+]
 
 [start]
 cmd = 'java -Dserver.port=$PORT -jar build/libs/borealis-0.0.1-SNAPSHOT.jar'
