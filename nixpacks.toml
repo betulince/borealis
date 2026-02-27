@@ -6,8 +6,8 @@ cmds = ['chmod +x gradlew']
 
 [phases.build]
 cmds = [
-  'export JAVA_HOME=$(dirname $(dirname $(which java)))',
-  './gradlew clean bootJar --no-daemon'
+  'java -version',
+  './gradlew clean bootJar --no-daemon --info'
 ]
 
 [start]
